@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RAG</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-3">
+    <form method="get" th:action="@{/rag}">
+        <div class="mb-3">
+            <label class="form-label">Ask your question</label>
+            <input class="form-control" type="text" name="query" th:value="${query}">
+            <button class="btn btn-outline-info mt-2">Search</button>
+        </div>
+    </form>
+
+    <form method="post" th:action="@{/upload-pdf}" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="file" class="form-label">Upload PDF</label>
+            <input class="form-control" type="file" name="file" id="file" accept="application/pdf">
+            <button type="submit" class="btn btn-outline-success mt-2">Upload PDF</button>
+        </div>
+    </form>
+
+    <form method="post" th:action="@{/embed-text}">
+        <button type="submit" class="btn btn-outline-primary mt-3">Run Text Embedding</button>
+    </form>
+
+    <div class="p-3">
+        <h3>Response :</h3>
+        <div th:text="${response}"></div>
+    </div>
+</div>
+</body>
+</html>
